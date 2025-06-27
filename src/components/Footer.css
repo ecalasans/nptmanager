@@ -1,0 +1,81 @@
+.footer {
+  background-color: #2d3033;
+  color: #ffffff;
+  padding: 1rem 0;
+  margin-top: auto;
+  border-top: 1px solid #d4dde1;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.footer-text {
+  display: flex;
+  align-items: center;
+}
+
+.footer-copyright {
+  font-size: 0.875rem;
+  color: #d4dde1;
+  font-weight: 400;
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-link {
+  color: #d4dde1;
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.footer-separator {
+  color: #aa4b41;
+  font-size: 0.875rem;
+  font-weight: bold;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+  
+  .footer-links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+/* For login page - full height footer */
+.login-page .footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
+/* For dashboard - sticky footer */
+.dashboard-app .footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 100;
+} 

@@ -1,0 +1,99 @@
+/* Custom theme colors */
+:root {
+  --primary-color: #335252;
+  --secondary-color: #d4dde1;
+  --accent-color: #aa4b41;
+  --dark-color: #2d3033;
+  --white-color: #ffffff;
+  --light-bg: #f8f9fa;
+  --border-color: #e9ecef;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--light-bg);
+  color: var(--dark-color);
+  line-height: 1.6;
+}
+
+.app {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-container {
+  background-color: var(--primary-color);
+  min-height: calc(100vh - 70px); /* Account for header height */
+  position: sticky;
+  top: 70px; /* Position below header */
+}
+
+.main-content {
+  background-color: var(--white-color);
+  min-height: calc(100vh - 70px); /* Account for header height */
+  padding: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sidebar-container {
+    position: relative;
+    min-height: auto;
+    top: 0;
+  }
+  
+  .main-content {
+    min-height: calc(100vh - 140px); /* Account for header and sidebar */
+  }
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
