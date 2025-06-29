@@ -15,8 +15,9 @@
 
 .sidebar-title {
   color: var(--white-color);
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: var(--text-xl);
+  font-weight: var(--font-semibold);
+  font-family: var(--font-primary);
   margin: 0;
 }
 
@@ -34,6 +35,7 @@
   border-radius: 8px;
   margin-bottom: 0.5rem;
   transition: all 0.3s ease;
+  font-family: var(--font-primary);
 }
 
 .sidebar-link:hover {
@@ -44,20 +46,21 @@
 
 .sidebar-link.active {
   background-color: var(--accent-color);
-  color: var(--white-color) !important;
-  box-shadow: 0 2px 8px rgba(170, 75, 65, 0.3);
+  color: var(--dark-color) !important;
+  box-shadow: 0 2px 8px rgba(250, 255, 159, 0.3);
 }
 
 .sidebar-icon {
-  font-size: 1.2rem;
+  font-size: var(--text-lg);
   margin-right: 0.75rem;
   width: 24px;
   text-align: center;
 }
 
 .sidebar-label {
-  font-weight: 500;
-  font-size: 0.95rem;
+  font-weight: var(--font-medium);
+  font-size: var(--text-sm);
+  font-family: var(--font-primary);
 }
 
 /* Responsive adjustments */
@@ -87,6 +90,6 @@
   }
   
   .sidebar-label {
-    font-size: 0.8rem;
+    font-size: var(--text-xs);
   }
 } 

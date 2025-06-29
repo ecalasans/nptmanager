@@ -1,6 +1,6 @@
 .dashboard-app {
   min-height: 100vh;
-  background-color: var(--light-bg);
+  background-color: var(--background-color);
   display: flex;
   flex-direction: column;
 }
@@ -13,7 +13,7 @@
 }
 
 .main-content {
-  background-color: var(--white-color);
+  background-color: var(--surface-color);
   min-height: calc(100vh - 70px - 80px); /* Account for header and footer height */
   padding: 0;
   flex: 1;
@@ -21,7 +21,7 @@
 
 .dashboard {
   min-height: calc(100vh - 70px - 80px); /* Account for header and footer height */
-  background-color: var(--light-bg);
+  background-color: var(--background-color);
   padding-bottom: 2rem; /* Space for footer */
 }
 
@@ -36,13 +36,15 @@
 
 .dashboard-header h1 {
   color: var(--primary-color);
-  font-weight: 700;
+  font-weight: var(--font-bold);
+  font-family: var(--font-primary);
   margin-bottom: 0.5rem;
 }
 
 .dashboard-header p {
   color: var(--dark-color);
-  font-size: 1.1rem;
+  font-size: var(--text-lg);
+  font-family: var(--font-secondary);
   opacity: 0.8;
 }
 
@@ -53,14 +55,14 @@
 .stat-card {
   border: none;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(47, 110, 126, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  background: var(--white-color);
+  background: var(--surface-color);
 }
 
 .stat-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 25px rgba(47, 110, 126, 0.15);
 }
 
 .stat-content {
@@ -76,8 +78,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
+  font-size: var(--text-xl);
   color: var(--white-color);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
 }
 
 .stat-info {
@@ -85,31 +88,34 @@
 }
 
 .stat-value {
-  font-size: 1.8rem;
-  font-weight: 700;
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
+  font-family: var(--font-primary);
   color: var(--primary-color);
   margin-bottom: 0.25rem;
 }
 
 .stat-title {
   color: var(--dark-color);
-  font-weight: 500;
+  font-weight: var(--font-medium);
+  font-family: var(--font-primary);
   margin: 0;
 }
 
 .main-card {
   border: none;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  background: var(--white-color);
+  box-shadow: 0 4px 12px rgba(47, 110, 126, 0.1);
+  background: var(--surface-color);
   margin-bottom: 1rem;
 }
 
 .main-card .card-title {
   color: var(--primary-color);
-  font-weight: 600;
+  font-weight: var(--font-semibold);
+  font-family: var(--font-primary);
   margin-bottom: 1rem;
-  font-size: 1.3rem;
+  font-size: var(--text-lg);
 }
 
 .activity-item {
@@ -124,7 +130,7 @@
 }
 
 .activity-icon {
-  font-size: 1.2rem;
+  font-size: var(--text-lg);
   margin-right: 0.75rem;
   width: 24px;
   text-align: center;
@@ -133,13 +139,15 @@
 .activity-text {
   flex: 1;
   color: var(--dark-color);
-  font-weight: 500;
+  font-weight: var(--font-medium);
+  font-family: var(--font-primary);
 }
 
 .activity-time {
   color: var(--dark-color);
   opacity: 0.6;
-  font-size: 0.9rem;
+  font-size: var(--text-sm);
+  font-family: var(--font-primary);
 }
 
 .quick-action {
@@ -152,11 +160,12 @@
 }
 
 .quick-action:hover {
-  background-color: var(--secondary-color);
+  background-color: var(--accent-color);
+  color: var(--dark-color);
 }
 
 .action-icon {
-  font-size: 1.2rem;
+  font-size: var(--text-lg);
   margin-right: 0.75rem;
   width: 24px;
   text-align: center;
@@ -164,7 +173,8 @@
 
 .action-text {
   color: var(--dark-color);
-  font-weight: 500;
+  font-weight: var(--font-medium);
+  font-family: var(--font-primary);
 }
 
 /* Responsive adjustments */
@@ -184,16 +194,16 @@
   }
   
   .dashboard-header h1 {
-    font-size: 1.8rem;
+    font-size: var(--text-xl);
   }
   
   .stat-value {
-    font-size: 1.5rem;
+    font-size: var(--text-lg);
   }
   
   .stat-icon {
     width: 50px;
     height: 50px;
-    font-size: 1.2rem;
+    font-size: var(--text-lg);
   }
 } 

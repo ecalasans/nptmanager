@@ -3,7 +3,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
 }
 
 .login-background {
@@ -52,22 +52,24 @@
 }
 
 .logo-icon {
-  font-size: 2.5rem;
+  font-size: var(--text-4xl);
   display: block;
   margin: 0 auto;
 }
 
 .login-title {
   color: var(--primary-color);
-  font-size: 1.8rem;
-  font-weight: 700;
+  font-size: var(--text-3xl);
+  font-weight: var(--font-bold);
+  font-family: var(--font-primary);
   margin-bottom: 0.25rem;
 }
 
 .login-subtitle {
   color: var(--dark-color);
   opacity: 0.7;
-  font-size: 0.95rem;
+  font-size: var(--text-sm);
+  font-family: var(--font-secondary);
   margin: 0;
 }
 
@@ -98,10 +100,11 @@
 }
 
 .login-form .form-label {
-  font-weight: 600;
+  font-weight: var(--font-semibold);
+  font-family: var(--font-primary);
   color: var(--dark-color);
   margin-bottom: 0.25rem;
-  font-size: 0.95rem;
+  font-size: var(--text-sm);
   display: block;
   width: 100%;
 }
@@ -110,7 +113,8 @@
   border: 2px solid var(--border-color);
   border-radius: 12px;
   padding: 0.625rem 1rem;
-  font-size: 0.95rem;
+  font-size: var(--text-sm);
+  font-family: var(--font-primary);
   transition: all 0.3s ease;
   background-color: var(--white-color);
   width: 100%;
@@ -121,7 +125,7 @@
 
 .login-input:focus {
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 0.2rem rgba(51, 82, 82, 0.15);
+  box-shadow: 0 0 0 0.2rem rgba(47, 110, 126, 0.15);
   background-color: var(--white-color);
 }
 
@@ -132,12 +136,13 @@
 }
 
 .login-button {
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
   border: none;
   border-radius: 12px;
   padding: 0.625rem 1.5rem;
-  font-size: 0.95rem;
-  font-weight: 600;
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  font-family: var(--font-primary);
   color: var(--white-color);
   transition: all 0.3s ease;
   margin-top: 0.5rem;
@@ -148,8 +153,8 @@
 
 .login-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(51, 82, 82, 0.3);
-  background: linear-gradient(135deg, var(--accent-color) 0%, var(--primary-color) 100%);
+  box-shadow: 0 10px 30px rgba(47, 110, 126, 0.3);
+  background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
 }
 
 .login-button:disabled {
@@ -169,7 +174,8 @@
 .signup-link {
   color: var(--primary-color);
   text-decoration: none;
-  font-weight: 500;
+  font-weight: var(--font-medium);
+  font-family: var(--font-primary);
   transition: color 0.3s ease;
 }
 
@@ -203,11 +209,11 @@
   }
   
   .login-title {
-    font-size: 2.2rem;
+    font-size: var(--text-2xl);
   }
   
   .logo-icon {
-    font-size: 3.5rem;
+    font-size: var(--text-4xl);
   }
 }
 
@@ -222,11 +228,11 @@
   }
   
   .login-title {
-    font-size: 2rem;
+    font-size: var(--text-xl);
   }
   
   .logo-icon {
-    font-size: 3rem;
+    font-size: var(--text-3xl);
   }
   
   .login-input {
@@ -235,7 +241,7 @@
   
   .login-button {
     padding: 0.875rem 1.5rem;
-    font-size: 1rem;
+    font-size: var(--text-base);
   }
 }
 
@@ -250,11 +256,11 @@
   }
   
   .login-title {
-    font-size: 1.8rem;
+    font-size: var(--text-lg);
   }
   
   .logo-icon {
-    font-size: 2.5rem;
+    font-size: var(--text-2xl);
   }
   
   .login-input {

@@ -1,6 +1,6 @@
 .header {
   background-color: var(--primary-color);
-  box-shadow: 0 2px 8px rgba(51, 82, 82, 0.2);
+  box-shadow: 0 2px 8px rgba(47, 110, 126, 0.2);
   padding: 0.75rem 0;
   position: sticky;
   top: 0;
@@ -11,18 +11,20 @@
   display: flex;
   align-items: center;
   color: var(--white-color) !important;
-  font-weight: 600;
-  font-size: 1.4rem;
+  font-weight: var(--font-semibold);
+  font-size: var(--text-xl);
+  font-family: var(--font-primary);
 }
 
 .header-icon {
-  font-size: 1.6rem;
+  font-size: var(--text-2xl);
   margin-right: 0.5rem;
 }
 
 .header-title {
   color: var(--white-color);
-  font-weight: 700;
+  font-weight: var(--font-bold);
+  font-family: var(--font-primary);
 }
 
 .login-btn {
@@ -31,7 +33,8 @@
   gap: 0.5rem;
   border: 2px solid var(--white-color);
   color: var(--white-color);
-  font-weight: 500;
+  font-weight: var(--font-medium);
+  font-family: var(--font-primary);
   padding: 0.5rem 1rem;
   border-radius: 8px;
   transition: all 0.3s ease;
@@ -45,7 +48,7 @@
 }
 
 .login-icon {
-  font-size: 1.1rem;
+  font-size: var(--text-lg);
 }
 
 /* Modal Styles */
@@ -61,42 +64,44 @@
 
 .modal-header .modal-title {
   color: var(--white-color);
-  font-weight: 600;
+  font-weight: var(--font-semibold);
+  font-family: var(--font-primary);
 }
 
 .login-submit-btn {
   background-color: var(--primary-color);
   border-color: var(--primary-color);
-  font-weight: 500;
+  font-weight: var(--font-medium);
+  font-family: var(--font-primary);
   padding: 0.75rem;
   border-radius: 8px;
   transition: all 0.3s ease;
 }
 
 .login-submit-btn:hover {
-  background-color: var(--accent-color);
-  border-color: var(--accent-color);
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(170, 75, 65, 0.3);
+  box-shadow: 0 4px 12px rgba(128, 194, 180, 0.3);
 }
 
 .form-control:focus {
   border-color: var(--primary-color);
-  box-shadow: 0 0 0 0.2rem rgba(51, 82, 82, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(47, 110, 126, 0.25);
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .header-brand {
-    font-size: 1.2rem;
+    font-size: var(--text-lg);
   }
   
   .header-icon {
-    font-size: 1.4rem;
+    font-size: var(--text-xl);
   }
   
   .login-btn {
     padding: 0.4rem 0.8rem;
-    font-size: 0.9rem;
+    font-size: var(--text-sm);
   }
 } 

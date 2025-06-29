@@ -8,8 +8,8 @@ import './LoginPage.css';
 const LoginPage = () => {
   const navigate = useNavigate();
   const [loginForm, setLoginForm] = useState({
-    usuario: '',
-    senha: ''
+    username: '',
+    password: ''
   });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
@@ -35,7 +35,19 @@ const LoginPage = () => {
     setSelectedHospital('');
 
     try {
+      // Test API connection first
+      console.log('Testando conexão com a API...');
+      const connectionTest = await apiService.testApiConnection();
+      console.log('Resultado do teste de conexão:', connectionTest);
+
+      if (!connectionTest.connected) {
+        setError('Não foi possível conectar ao servidor. Verifique se o backend está rodando.');
+        return;
+      }
+
+      console.log('Formulário de login:', loginForm);
       const result = await apiService.loginDoctor(loginForm);
+      
       if (result.success) {
         localStorage.setItem('user', JSON.stringify(result.doctor));
         const profile = await apiService.getProfile();
@@ -47,6 +59,7 @@ const LoginPage = () => {
         }
       }
     } catch (err) {
+      console.error('Erro detalhado do login:', err);
       setError(err.message || 'Falha no login. Verifique seu usuário e senha.');
     } finally {
       setIsLoading(false);
@@ -78,7 +91,7 @@ const LoginPage = () => {
                   <Card.Body className="login-card-body">
                     <div className="login-header">
                       <div className="login-logo">
-                        <span className="logo-icon">💊</span>
+                        <span className="logo-icon">📋</span>
                       </div>
                       <h1 className="login-title">NPT Manager</h1>
                       <p className="login-subtitle">Entre na sua conta</p>
@@ -96,8 +109,8 @@ const LoginPage = () => {
                           <Form.Label>Usuário</Form.Label>
                           <Form.Control
                             type="text"
-                            name="usuario"
-                            value={loginForm.usuario}
+                            name="username"
+                            value={loginForm.username}
                             onChange={handleInputChange}
                             placeholder="Digite seu usuário"
                             required
@@ -109,8 +122,8 @@ const LoginPage = () => {
                           <Form.Label>Senha</Form.Label>
                           <Form.Control
                             type="password"
-                            name="senha"
-                            value={loginForm.senha}
+                            name="password"
+                            value={loginForm.password}
                             onChange={handleInputChange}
                             placeholder="Digite sua senha"
                             required

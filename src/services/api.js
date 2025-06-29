@@ -29,10 +29,21 @@ class ApiService {
         const errorData = await response.json().catch(() => ({}));
         console.error('Resposta de erro da API:', errorData);
         
-        // Traduzir mensagens de erro comuns
+        // Handle Django REST Framework error format
         let errorMessage = 'Erro desconhecido';
         
-        if (errorData.message) {
+        if (errorData.errors && typeof errorData.errors === 'object') {
+          // Django serializer errors format
+          const errorMessages = [];
+          Object.keys(errorData.errors).forEach(field => {
+            if (Array.isArray(errorData.errors[field])) {
+              errorMessages.push(`${field}: ${errorData.errors[field].join(', ')}`);
+            } else {
+              errorMessages.push(`${field}: ${errorData.errors[field]}`);
+            }
+          });
+          errorMessage = errorMessages.join('; ');
+        } else if (errorData.message) {
           errorMessage = errorData.message;
         } else if (errorData.detail) {
           errorMessage = errorData.detail;
@@ -85,6 +96,36 @@ class ApiService {
     }
   }
 
+  // Test API connectivity and endpoint format
+  async testApiConnection() {
+    try {
+      console.log('Testando conectividade com a API...');
+      
+      // Test basic connectivity
+      const response = await fetch(`${this.baseURL}/`, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+        }
+      });
+      
+      console.log('Status da resposta de teste:', response.status);
+      console.log('Cabeçalhos da resposta de teste:', response.headers);
+      
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Dados da resposta de teste:', data);
+        return { connected: true, data };
+      } else {
+        console.log('API retornou erro:', response.status);
+        return { connected: false, status: response.status };
+      }
+    } catch (error) {
+      console.error('Erro ao testar conectividade:', error);
+      return { connected: false, error: error.message };
+    }
+  }
+
   // Get all hospitals
   async getHospitals() {
     return this.fetchWithErrorHandling(`${this.baseURL}/hospitais/`);
@@ -92,18 +133,94 @@ class ApiService {
 
   // Login doctor using Django session authentication
   async loginDoctor(credentials) {
-    const response = await this.fetchWithErrorHandling(`${this.baseURL}/auth/login/`, {
-      method: 'POST',
-      body: JSON.stringify({
-        usuario: credentials.usuario,
-        senha: credentials.senha
-      })
+    console.log('Tentando fazer login com credenciais:', {
+      username: credentials.username,
+      password: credentials.password ? '[HIDDEN]' : '[EMPTY]'
     });
 
-    if (response.success) {
-      return { success: true, doctor: response.user };
-    } else {
-      throw new Error(response.message || 'Falha no processo de login. Verifique suas credenciais.');
+    // Validate required fields
+    if (!credentials.username || !credentials.password) {
+      throw new Error('Usuário e senha são obrigatórios');
+    }
+
+    // Prepare request body according to Django backend expectations
+    const requestBody = {
+      username: credentials.username.trim(),
+      password: credentials.password
+    };
+
+    console.log('Corpo da requisição sendo enviado:', {
+      username: requestBody.username,
+      password: '[HIDDEN]'
+    });
+
+    // Use the correct endpoint format based on Django backend
+    const endpoint = `${this.baseURL}/auth/login/`;
+    console.log(`Tentando endpoint: ${endpoint}`);
+
+    try {
+      const response = await this.fetchWithErrorHandling(endpoint, {
+        method: 'POST',
+        body: JSON.stringify(requestBody),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest'
+        }
+      });
+
+      console.log('Resposta do login:', response);
+
+      // Check for Django backend success response format
+      if (response.success && response.user) {
+        return { 
+          success: true, 
+          doctor: response.user,
+          message: response.message || 'Login realizado com sucesso'
+        };
+      } else if (response.user) {
+        // Fallback for different response formats
+        return { 
+          success: true, 
+          doctor: response.user,
+          message: 'Login realizado com sucesso'
+        };
+      } else {
+        throw new Error(response.message || 'Resposta inválida do servidor');
+      }
+    } catch (error) {
+      console.log(`Falha no endpoint ${endpoint}:`, error.message);
+      
+      // If it's a 400, try with form data instead of JSON (Django fallback)
+      if (error.message.includes('400') || error.message.includes('Dados inválidos')) {
+        try {
+          console.log(`Tentando endpoint ${endpoint} com form data`);
+          
+          const formData = new FormData();
+          formData.append('username', credentials.username.trim());
+          formData.append('password', credentials.password);
+          
+          const formResponse = await this.fetchWithErrorHandling(endpoint, {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'X-Requested-With': 'XMLHttpRequest'
+            }
+          });
+
+          if (formResponse.success && formResponse.user) {
+            return { 
+              success: true, 
+              doctor: formResponse.user,
+              message: formResponse.message || 'Login realizado com sucesso'
+            };
+          }
+        } catch (formError) {
+          console.log(`Falha com form data no endpoint ${endpoint}:`, formError.message);
+        }
+      }
+      
+      throw error;
     }
   }
 
@@ -137,6 +254,21 @@ class ApiService {
   // Get hospitals for a specific doctor
   async getDoctorHospitals(doctorId) {
     return this.fetchWithErrorHandling(`${this.baseURL}/medicos/${doctorId}/hospitais/`);
+  }
+
+  // Get patients
+  async getPatients() {
+    return this.fetchWithErrorHandling(`${this.baseURL}/pacientes/`);
+  }
+
+  // Get NPT records
+  async getNPTRecords() {
+    return this.fetchWithErrorHandling(`${this.baseURL}/npts/`);
+  }
+
+  // Get prescriptions
+  async getPrescriptions() {
+    return this.fetchWithErrorHandling(`${this.baseURL}/prescricoes/`);
   }
 }
 

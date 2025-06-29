@@ -28,6 +28,7 @@ O NPT Manager foi desenvolvido para:
 - **Django REST Framework** - API REST para backend
 - **Autenticação por sessão** - Sistema seguro de login
 - **CORS habilitado** - Comunicação entre frontend e backend
+- **Campos padrão Django** - username/password para compatibilidade
 
 ### Desenvolvimento
 - **ESLint** - Linting de código JavaScript
@@ -36,11 +37,12 @@ O NPT Manager foi desenvolvido para:
 ## ✨ Funcionalidades Atuais
 
 ### 🔐 Sistema de Autenticação
-- **Login seguro** com usuário e senha
+- **Login seguro** com username e password (padrão Django)
 - **Seleção de hospital** após autenticação
 - **Gerenciamento de sessão** com localStorage
 - **Validação de credenciais** em tempo real
 - **Mensagens de erro** em português
+- **Compatibilidade total** com Django API
 
 ### 🏥 Dashboard Principal
 - **Interface moderna** com design responsivo
@@ -55,6 +57,7 @@ O NPT Manager foi desenvolvido para:
 - **Componentes reutilizáveis** e modulares
 - **Animações suaves** e transições
 - **Footer com copyright** ECalasans
+- **Layout otimizado** com melhor uso do espaço
 
 ### 🔧 Funcionalidades Técnicas
 - **API Service Layer** para comunicação com backend
@@ -62,6 +65,7 @@ O NPT Manager foi desenvolvido para:
 - **Loading states** para melhor UX
 - **Form validation** client-side
 - **Responsive design** para todos os dispositivos
+- **Debugging avançado** com logs detalhados
 
 ## 🛠️ Instalação e Configuração
 
@@ -87,6 +91,7 @@ npm install
 ```bash
 # Certifique-se de que o servidor Django está rodando
 # na porta 8000 com a API configurada
+# O backend deve aceitar campos 'username' e 'password'
 ```
 
 4. **Inicie o servidor de desenvolvimento**
@@ -116,13 +121,13 @@ nptmanager/
 ├── src/
 │   ├── components/         # Componentes React
 │   │   ├── Dashboard.jsx   # Dashboard principal
-│   │   ├── LoginPage.jsx   # Página de login
+│   │   ├── LoginPage.jsx   # Página de login (atualizada)
 │   │   ├── Header.jsx      # Cabeçalho da aplicação
 │   │   ├── Sidebar.jsx     # Navegação lateral
 │   │   ├── Footer.jsx      # Rodapé da aplicação
 │   │   └── *.css          # Estilos dos componentes
 │   ├── services/
-│   │   └── api.js         # Serviços de API
+│   │   └── api.js         # Serviços de API (atualizado)
 │   ├── assets/            # Recursos estáticos
 │   ├── App.jsx            # Componente principal
 │   ├── main.jsx           # Ponto de entrada
@@ -134,13 +139,39 @@ nptmanager/
 
 ## 🎨 Paleta de Cores
 
-O sistema utiliza uma paleta de cores profissional:
+O sistema utiliza uma paleta de cores moderna e limpa em tema claro:
 
-- **Primária**: `#335252` (Verde-azulado escuro)
-- **Secundária**: `#d4dde1` (Cinza claro)
-- **Destaque**: `#aa4b41` (Vermelho)
-- **Escuro**: `#2d3033` (Cinza escuro)
-- **Branco**: `#ffffff` (Branco)
+- **Primária**: `#2f6e7e` (Azul-teal escuro - cor principal da marca)
+- **Secundária**: `#80c2b4` (Verde-menta - elementos secundários)
+- **Destaque**: `#faff9f` (Amarelo claro - destaques e CTAs)
+- **Fundo**: `#f3ffef` (Verde muito claro - fundo principal)
+- **Superfície**: `#b8d0cf` (Azul-cinza claro - cards e superfícies)
+- **Branco**: `#ffffff` (Branco puro)
+- **Escuro**: `#2d3033` (Cinza escuro - texto)
+
+## 🔄 Últimas Atualizações
+
+### v1.2.0 - Dezembro 2024
+- ✅ **Nova Paleta de Cores**: Tema claro moderno com cores suaves e profissionais
+- ✅ **Cores Atualizadas**: `#faff9f`, `#80c2b4`, `#f3ffef`, `#b8d0cf`, `#2f6e7e`
+- ✅ **Melhor Contraste**: Elementos ativos destacados com amarelo claro
+- ✅ **Hierarquia Visual**: Cards e superfícies com azul-cinza claro
+- ✅ **Fundo Suave**: Verde muito claro para melhor conforto visual
+
+### v1.1.0 - Dezembro 2024
+- ✅ **Compatibilidade Django**: Campos atualizados para `username`/`password`
+- ✅ **Interface otimizada**: Login page redesenhada com layout mais compacto
+- ✅ **Error handling**: Mensagens de erro em português com debugging avançado
+- ✅ **Responsividade**: Melhor adaptação para diferentes tamanhos de tela
+- ✅ **Footer**: Adicionado footer com copyright ECalasans
+- ✅ **Documentação**: README atualizado com informações completas
+
+### Melhorias Técnicas
+- **API Service**: Tradução completa de mensagens para português
+- **Form Validation**: Validação client-side aprimorada
+- **Loading States**: Estados de carregamento mais informativos
+- **Debug Logs**: Logs detalhados para troubleshooting
+- **Code Quality**: ESLint configurado para manter padrões
 
 ## 🔮 Roadmap - Funcionalidades Futuras
 
@@ -218,6 +249,7 @@ O sistema utiliza uma paleta de cores profissional:
 - **CSS modular** para estilos
 - **Comentários** em português
 - **Nomes descritivos** para variáveis e funções
+- **Compatibilidade Django** para campos de autenticação
 
 ## 📄 Licença
 
@@ -226,7 +258,7 @@ Este projeto está licenciado sob a **Licença MIT** - veja o arquivo [LICENSE](
 ## 👨‍💻 Desenvolvimento
 
 **Desenvolvedor**: ECalasans  
-**Versão**: 1.0.0  
+**Versão**: 1.1.0  
 **Última atualização**: Dezembro 2024
 
 ## 📞 Suporte

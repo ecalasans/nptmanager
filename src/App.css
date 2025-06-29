@@ -1,12 +1,14 @@
-/* Custom theme colors */
+/* Custom theme colors - Light Theme */
 :root {
-  --primary-color: #335252;
-  --secondary-color: #d4dde1;
-  --accent-color: #aa4b41;
-  --dark-color: #2d3033;
-  --white-color: #ffffff;
-  --light-bg: #f8f9fa;
-  --border-color: #e9ecef;
+  --primary-color: #2f6e7e;      /* Dark teal - main brand color */
+  --secondary-color: #80c2b4;    /* Mint green - secondary elements */
+  --accent-color: #faff9f;       /* Light yellow - highlights and CTAs */
+  --background-color: #f3ffef;   /* Very light green - main background */
+  --surface-color: #b8d0cf;      /* Light blue-gray - cards and surfaces */
+  --white-color: #ffffff;        /* Pure white */
+  --dark-color: #2d3033;         /* Dark text */
+  --light-bg: #f3ffef;           /* Light background */
+  --border-color: #b8d0cf;       /* Border color */
 }
 
 * {
@@ -16,10 +18,10 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: var(--font-primary);
   background-color: var(--light-bg);
   color: var(--dark-color);
-  line-height: 1.6;
+  line-height: var(--leading-normal);
 }
 
 .app {
@@ -44,7 +46,7 @@ body {
 }
 
 .main-content {
-  background-color: var(--white-color);
+  background-color: var(--background-color);
   min-height: calc(100vh - 70px); /* Account for header height */
   padding: 0;
 }
