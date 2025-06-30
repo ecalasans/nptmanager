@@ -3,10 +3,17 @@ import { Container, Row, Col, Card, Form, Button, Alert } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom';
 import apiService from '../services/api';
 import Footer from './Footer';
+import nptImage from '../assets/img/npt.png';
 import './LoginPage.css';
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  
+  // Set the NPT background image as CSS variable
+  React.useEffect(() => {
+    document.documentElement.style.setProperty('--npt-background-image', `url(${nptImage})`);
+  }, []);
+  
   const [loginForm, setLoginForm] = useState({
     username: '',
     password: ''
@@ -85,13 +92,13 @@ const LoginPage = () => {
       <div className="login-background">
         <Container fluid className="login-container">
           <Row className="justify-content-center">
-            <Col xs={12} lg={10} xl={8}>
+            <Col xs={12} lg={10} xl={10}>
               <div className="login-card-container">
                 <Card className="login-card">
                   <Card.Body className="login-card-body">
                     <div className="login-header">
                       <div className="login-logo">
-                        <span className="logo-icon">📋</span>
+                        <span className="logo-icon">⚕</span>
                       </div>
                       <h1 className="login-title">NPT Manager</h1>
                       <p className="login-subtitle">Entre na sua conta</p>

@@ -30,7 +30,7 @@ const Header = () => {
       <Navbar className="header" expand="lg">
         <Container fluid>
           <Navbar.Brand className="header-brand">
-            <span className="header-icon">🚀</span>
+            <span className="header-icon">📋</span>
             <span className="header-title">NPT Manager</span>
           </Navbar.Brand>
           

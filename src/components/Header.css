@@ -1,107 +1,124 @@
+/* Header - Light Theme */
 .header {
-  background-color: var(--primary-color);
-  box-shadow: 0 2px 8px rgba(47, 110, 126, 0.2);
-  padding: 0.75rem 0;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 2px 20px rgba(115, 2, 12, 0.08);
+  padding: 1rem 0;
   position: sticky;
   top: 0;
   z-index: 1000;
+  border-bottom: 1px solid rgba(202, 203, 195, 0.2);
 }
 
 .header-brand {
   display: flex;
   align-items: center;
-  color: var(--white-color) !important;
-  font-weight: var(--font-semibold);
-  font-size: var(--text-xl);
-  font-family: var(--font-primary);
+  color: var(--text-primary) !important;
+  font-weight: 600;
+  font-size: 1.25rem;
+  font-family: 'Montserrat', sans-serif;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.header-brand:hover {
+  color: var(--text-secondary) !important;
+  transform: translateY(-1px);
 }
 
 .header-icon {
-  font-size: var(--text-2xl);
-  margin-right: 0.5rem;
+  font-size: 1.5rem;
+  margin-right: 0.75rem;
+  color: var(--text-primary);
 }
 
 .header-title {
-  color: var(--white-color);
-  font-weight: var(--font-bold);
-  font-family: var(--font-primary);
+  color: var(--text-primary);
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: -0.01em;
 }
 
 .login-btn {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  border: 2px solid var(--white-color);
-  color: var(--white-color);
-  font-weight: var(--font-medium);
-  font-family: var(--font-primary);
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  transition: all 0.3s ease;
+  border: 2px solid var(--accent-color);
+  color: var(--accent-color);
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  padding: 0.625rem 1.25rem;
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: transparent;
+  text-decoration: none;
 }
 
 .login-btn:hover {
-  background-color: var(--white-color);
-  color: var(--primary-color);
+  background-color: var(--accent-color);
+  color: white;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 6px 20px rgba(60, 125, 166, 0.25);
+  text-decoration: none;
 }
 
 .login-icon {
-  font-size: var(--text-lg);
+  font-size: 1rem;
 }
 
 /* Modal Styles */
 .modal-header {
-  background-color: var(--primary-color);
-  color: var(--white-color);
-  border-bottom: 1px solid var(--border-color);
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  color: var(--text-primary);
+  border-bottom: 1px solid rgba(202, 203, 195, 0.2);
 }
 
 .modal-header .btn-close {
-  filter: invert(1);
+  filter: none;
+  opacity: 0.7;
 }
 
 .modal-header .modal-title {
-  color: var(--white-color);
-  font-weight: var(--font-semibold);
-  font-family: var(--font-primary);
+  color: var(--text-primary);
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .login-submit-btn {
-  background-color: var(--primary-color);
-  border-color: var(--primary-color);
-  font-weight: var(--font-medium);
-  font-family: var(--font-primary);
-  padding: 0.75rem;
-  border-radius: 8px;
-  transition: all 0.3s ease;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  border: none;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: white;
 }
 
 .login-submit-btn:hover {
-  background-color: var(--secondary-color);
-  border-color: var(--secondary-color);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(128, 194, 180, 0.3);
+  background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(115, 2, 12, 0.25);
 }
 
 .form-control:focus {
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 0.2rem rgba(47, 110, 126, 0.25);
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 4px rgba(60, 125, 166, 0.1);
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .header-brand {
-    font-size: var(--text-lg);
+    font-size: 1.125rem;
   }
   
   .header-icon {
-    font-size: var(--text-xl);
+    font-size: 1.25rem;
   }
   
   .login-btn {
-    padding: 0.4rem 0.8rem;
-    font-size: var(--text-sm);
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
   }
 } 

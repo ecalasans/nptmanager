@@ -1,14 +1,19 @@
-/* Custom theme colors - Light Theme */
+/* Custom theme colors - New Minimalist Theme */
 :root {
-  --primary-color: #2f6e7e;      /* Dark teal - main brand color */
-  --secondary-color: #80c2b4;    /* Mint green - secondary elements */
-  --accent-color: #faff9f;       /* Light yellow - highlights and CTAs */
-  --background-color: #f3ffef;   /* Very light green - main background */
-  --surface-color: #b8d0cf;      /* Light blue-gray - cards and surfaces */
+  --primary-color: #73020c;      /* Deep red - main brand color */
+  --secondary-color: #03318c;    /* Deep blue - secondary elements */
+  --accent-color: #3c7da6;       /* Medium blue - highlights and CTAs */
+  --light-accent: #789ebf;       /* Light blue - subtle accents */
+  --neutral-color: #cacbc3;      /* Light gray - neutral elements */
+  --background-color: #ffffff;   /* Pure white background */
+  --surface-color: #ffffff;      /* White cards and surfaces */
   --white-color: #ffffff;        /* Pure white */
-  --dark-color: #2d3033;         /* Dark text */
-  --light-bg: #f3ffef;           /* Light background */
-  --border-color: #b8d0cf;       /* Border color */
+  --dark-color: #2d3033;         /* Dark gray for primary text */
+  --light-bg: #fafafa;           /* Very light gray background */
+  --border-color: #e5e5e5;       /* Light border color */
+  --text-muted: #6b7280;         /* Muted gray text */
+  --text-primary: #73020c;       /* Red for primary headings */
+  --text-secondary: #3c7da6;     /* Blue for secondary elements */
 }
 
 * {
