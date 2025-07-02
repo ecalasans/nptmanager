@@ -39,12 +39,12 @@
   letter-spacing: -0.01em;
 }
 
-.login-btn {
+.logout-btn {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: center;
   border: 2px solid var(--accent-color);
-  color: var(--accent-color);
+  color: var(--accent-color) !important;
   font-weight: 600;
   font-family: 'Montserrat', sans-serif;
   padding: 0.625rem 1.25rem;
@@ -52,9 +52,11 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   background-color: transparent;
   text-decoration: none;
+  white-space: nowrap;
+  overflow: visible;
 }
 
-.login-btn:hover {
+.logout-btn:hover {
   background-color: var(--accent-color);
   color: white;
   transform: translateY(-2px);
@@ -62,50 +64,9 @@
   text-decoration: none;
 }
 
-.login-icon {
-  font-size: 1rem;
-}
 
-/* Modal Styles */
-.modal-header {
-  background-color: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  color: var(--text-primary);
-  border-bottom: 1px solid rgba(202, 203, 195, 0.2);
-}
 
-.modal-header .btn-close {
-  filter: none;
-  opacity: 0.7;
-}
 
-.modal-header .modal-title {
-  color: var(--text-primary);
-  font-weight: 600;
-  font-family: 'Montserrat', sans-serif;
-}
-
-.login-submit-btn {
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-  border: none;
-  font-weight: 600;
-  font-family: 'Montserrat', sans-serif;
-  padding: 0.75rem 1.5rem;
-  border-radius: 12px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  color: white;
-}
-
-.login-submit-btn:hover {
-  background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(115, 2, 12, 0.25);
-}
-
-.form-control:focus {
-  border-color: var(--accent-color);
-  box-shadow: 0 0 0 4px rgba(60, 125, 166, 0.1);
-}
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
@@ -117,7 +78,7 @@
     font-size: 1.25rem;
   }
   
-  .login-btn {
+  .logout-btn {
     padding: 0.5rem 1rem;
     font-size: 0.875rem;
   }
