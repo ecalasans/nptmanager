@@ -44,12 +44,20 @@ O NPT Manager foi desenvolvido para:
 - **Mensagens de erro** em português
 - **Compatibilidade total** com Django API
 
+### 🏥 Gerenciamento Hospitalar
+- **Contexto hospitalar** mantido em toda a aplicação
+- **Dados filtrados** por hospital selecionado
+- **Informações hospitalares** no Dashboard
+- **Sidebar limpa** sem exibição de hospital (foco em navegação)
+- **Hospital ID** gerenciado via localStorage
+
 ### 🏥 Dashboard Principal
 - **Interface moderna** com design responsivo
-- **Estatísticas em tempo real** (usuários, projetos, tarefas, receita)
-- **Feed de atividades** recentes
-- **Ações rápidas** para tarefas comuns
+- **Estatísticas em tempo real** (pacientes, prescrições, médias)
+- **Dados hospitalares** filtrados por hospital selecionado
+- **Atualização manual** com botão de refresh
 - **Navegação lateral** intuitiva
+- **Informações hospitalares** no cabeçalho
 
 ### 🎨 Interface de Usuário
 - **Design responsivo** para desktop, tablet e mobile
@@ -123,7 +131,7 @@ nptmanager/
 │   │   ├── Dashboard.jsx   # Dashboard principal
 │   │   ├── LoginPage.jsx   # Página de login (atualizada)
 │   │   ├── Header.jsx      # Cabeçalho da aplicação
-│   │   ├── Sidebar.jsx     # Navegação lateral
+│   │   ├── Sidebar.jsx     # Navegação lateral (sem exibição de hospital)
 │   │   ├── Footer.jsx      # Rodapé da aplicação
 │   │   └── *.css          # Estilos dos componentes
 │   ├── services/
@@ -150,6 +158,13 @@ O sistema utiliza uma paleta de cores moderna e limpa em tema claro:
 - **Escuro**: `#2d3033` (Cinza escuro - texto)
 
 ## 🔄 Últimas Atualizações
+
+### v1.3.0 - Janeiro 2025
+- ✅ **Dashboard Hospitalar**: Endpoint `/api/dashboard/` com dados agregados
+- ✅ **Métricas Hospitalares**: Total de pacientes, prescrições e médias por hospital
+- ✅ **Sidebar Otimizada**: Remoção de exibição de hospital (foco em navegação)
+- ✅ **Contexto Hospitalar**: Mantido em background para Dashboard e outros componentes
+- ✅ **API Integrada**: Comunicação completa entre frontend e backend Django
 
 ### v1.2.0 - Dezembro 2024
 - ✅ **Nova Paleta de Cores**: Tema claro moderno com cores suaves e profissionais
@@ -271,3 +286,31 @@ Para suporte técnico ou dúvidas:
 ---
 
 **NPT Manager** - Simplificando o gerenciamento de Nutrição Parenteral Total 🏥💊
+
+## 🆕 Integração do Dashboard com API
+
+A partir de julho de 2025, o Dashboard do NPT Manager está totalmente integrado à API Django, trazendo dados em tempo real para os cards principais:
+
+- **Pacientes em NPT no Hospital**
+- **Prescrições Realizadas**
+- **Média de Prescrições por Paciente**
+
+### Como funciona
+- O Dashboard busca o hospital selecionado no localStorage após o login.
+- Faz uma requisição única para `/api/dashboard/?hospital_id={uuid}`.
+- Preenche os cards com os dados retornados da API.
+- Exibe o nome e tipo do hospital e a data/hora da última atualização no cabeçalho.
+- Permite atualizar manualmente os dados com o botão "Atualizar".
+- Exibe estados de carregamento (spinners) e mensagens de erro amigáveis.
+
+### Códigos de Erro
+- `400` - Falta ou formato inválido do hospital_id (UUID)
+- `404` - Hospital não encontrado
+- `500` - Erro interno do servidor
+
+### Benefícios
+- **Performance**: Menos requisições, dados agregados em um único endpoint.
+- **UX**: Feedback visual imediato, informações hospitalares claras, atualização manual.
+- **Manutenção**: Código mais limpo e desacoplado, fácil de evoluir.
+
+Veja a seção de API para detalhes do endpoint e exemplos de resposta.

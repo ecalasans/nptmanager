@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Nav, Navbar, Offcanvas } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChartBar, faUsers, faHistory, faChartLine, faFileAlt } from '@fortawesome/free-solid-svg-icons';
 import apiService from '../services/api';
 import './Sidebar.css';
 
@@ -11,11 +13,11 @@ const Sidebar = ({ showMobileMenu, setShowMobileMenu }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   const menuItems = [
-    { path: '/dashboard', label: 'Dashboard', icon: '📊' },
-    { path: '/pacientes', label: 'Pacientes', icon: '👥' },
-    { path: '/historico', label: 'Histórico', icon: '📋' },
-    { path: '/estatisticas', label: 'Estatísticas', icon: '📈' },
-    { path: '/protocolos', label: 'Protocolos', icon: '📋' },
+    { path: '/dashboard', label: 'Dashboard', icon: faChartBar },
+    { path: '/pacientes', label: 'Pacientes', icon: faUsers },
+    { path: '/historico', label: 'Histórico', icon: faHistory },
+    { path: '/estatisticas', label: 'Estatísticas', icon: faChartLine },
+    { path: '/protocolos', label: 'Protocolos', icon: faFileAlt },
   ];
 
   useEffect(() => {
@@ -69,15 +71,43 @@ const Sidebar = ({ showMobileMenu, setShowMobileMenu }) => {
   const formatLastLogin = (lastLogin) => {
     if (!lastLogin) return 'Informação não disponível';
     
+    // Ensure the date is properly parsed and converted to system timezone
     const date = new Date(lastLogin);
     const now = new Date();
+    
+    // Check if the date is valid
+    if (isNaN(date.getTime())) {
+      return 'Data inválida';
+    }
+    
     const diffInHours = Math.floor((now - date) / (1000 * 60 * 60));
     
-    if (diffInHours < 1) return 'Agora mesmo';
-    if (diffInHours < 24) return `há ${diffInHours} hora${diffInHours > 1 ? 's' : ''}`;
+    // Format the actual datetime using system timezone
+    const formattedDate = date.toLocaleDateString('pt-BR', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
+    });
     
-    const diffInDays = Math.floor(diffInHours / 24);
-    return `há ${diffInDays} dia${diffInDays > 1 ? 's' : ''}`;
+    const formattedTime = date.toLocaleTimeString('pt-BR', {
+      hour: '2-digit',
+      minute: '2-digit',
+      timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
+    });
+    
+    // Calculate relative time
+    let relativeTime = '';
+    if (diffInHours < 1) {
+      relativeTime = 'Agora mesmo';
+    } else if (diffInHours < 24) {
+      relativeTime = `há ${diffInHours} hora${diffInHours > 1 ? 's' : ''}`;
+    } else {
+      const diffInDays = Math.floor(diffInHours / 24);
+      relativeTime = `há ${diffInDays} dia${diffInDays > 1 ? 's' : ''}`;
+    }
+    
+    return `${formattedDate} às ${formattedTime} (${relativeTime})`;
   };
 
   const getDoctorTitle = (gender) => {
@@ -109,11 +139,6 @@ const Sidebar = ({ showMobileMenu, setShowMobileMenu }) => {
                 <p className="user-crm">
                   CRM: {userProfile.crm || 'N/A'}
                 </p>
-                {selectedHospital && (
-                  <p className="user-hospital">
-                    Hospital: {selectedHospital.nome}
-                  </p>
-                )}
                 <p className="user-last-login">
                   Último acesso: {formatLastLogin(userProfile.last_login || userProfile.lastLogin)}
                 </p>
@@ -126,7 +151,7 @@ const Sidebar = ({ showMobileMenu, setShowMobileMenu }) => {
             </div>
           )}
         </div>
-        <Nav className="flex-column sidebar-nav">
+                    <Nav className="flex-column sidebar-nav">
           {menuItems.map((item) => (
             <Nav.Link
               key={item.path}
@@ -134,7 +159,9 @@ const Sidebar = ({ showMobileMenu, setShowMobileMenu }) => {
               to={item.path}
               className={`sidebar-link ${location.pathname === item.path ? 'active' : ''}`}
             >
-              <span className="sidebar-icon">{item.icon}</span>
+              <span className="sidebar-icon">
+                <FontAwesomeIcon icon={item.icon} />
+              </span>
               <span className="sidebar-label">{item.label}</span>
             </Nav.Link>
           ))}
@@ -172,11 +199,6 @@ const Sidebar = ({ showMobileMenu, setShowMobileMenu }) => {
                     <p className="user-crm">
                       CRM: {userProfile.crm || 'N/A'}
                     </p>
-                    {selectedHospital && (
-                      <p className="user-hospital">
-                        Hospital: {selectedHospital.nome}
-                      </p>
-                    )}
                     <p className="user-last-login">
                       Último acesso: {formatLastLogin(userProfile.last_login || userProfile.lastLogin)}
                     </p>
@@ -200,7 +222,7 @@ const Sidebar = ({ showMobileMenu, setShowMobileMenu }) => {
                   className={`mobile-nav-link ${location.pathname === item.path ? 'active' : ''}`}
                   onClick={() => setShowMobileMenu(false)}
                 >
-                  <span className="mobile-nav-icon">{item.icon}</span>
+                  <FontAwesomeIcon icon={item.icon} className="me-3" />
                   <span className="mobile-nav-label">{item.label}</span>
                 </Nav.Link>
               ))}

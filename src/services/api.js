@@ -229,6 +229,7 @@ class ApiService {
     try {
       const response = await this.fetchWithErrorHandling(`${this.baseURL}/auth/check/`);
       return response;
+    // eslint-disable-next-line no-unused-vars
     } catch (error) {
       return { authenticated: false };
     }
@@ -268,6 +269,60 @@ class ApiService {
 
   // Get prescriptions
   async getPrescriptions() {
+    return this.fetchWithErrorHandling(`${this.baseURL}/prescricoes/`);
+  }
+
+  // Get dashboard data
+  async getDashboardData(hospitalId = null) {
+    try {
+      // Get hospital ID from localStorage if not provided
+      if (!hospitalId) {
+        const storedHospital = localStorage.getItem('selectedHospital');
+        if (storedHospital) {
+          hospitalId = storedHospital;
+        }
+      }
+
+      if (!hospitalId) {
+        throw new Error('Hospital ID is required for dashboard data');
+      }
+
+      const data = await this.fetchWithErrorHandling(`${this.baseURL}/dashboard/?hospital_id=${hospitalId}`);
+      
+      // Transform API response to match frontend expectations
+      return {
+        totalPatients: data.metrics.total_patients,
+        totalPrescriptions: data.metrics.total_prescriptions,
+        avgPrescriptions: data.metrics.avg_prescriptions,
+        recentPrescriptions: data.metrics.recent_prescriptions,
+        hospital: data.hospital,
+        charts: data.charts,
+        lastUpdated: data.last_updated
+      };
+    } catch (error) {
+      console.log('Erro ao carregar dados do dashboard:', error.message);
+      
+      // Return fallback data on error
+      return {
+        totalPatients: 0,
+        totalPrescriptions: 0,
+        avgPrescriptions: 0,
+        recentPrescriptions: 0,
+        hospital: null,
+        charts: null,
+        lastUpdated: new Date().toISOString()
+      };
+    }
+  }
+
+  // Get active patients for a hospital
+  async getActivePatientsByHospital(hospitalPublicId) {
+    // /api/pacientes/?ativo=true&cod_hospital={hospital_id}
+    return this.fetchWithErrorHandling(`${this.baseURL}/pacientes/?ativo=true&cod_hospital=${hospitalPublicId}`);
+  }
+
+  // Get all prescriptions for a list of patient IDs (fetch all, filter in frontend)
+  async getAllPrescriptions() {
     return this.fetchWithErrorHandling(`${this.baseURL}/prescricoes/`);
   }
 }

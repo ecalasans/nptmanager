@@ -300,19 +300,7 @@
   font-weight: 600;
 }
 
-.mobile-nav-icon {
-  font-size: 1.25rem;
-  margin-right: 1rem;
-  width: 24px;
-  text-align: center;
-  opacity: 0.8;
-  transition: opacity 0.3s ease;
-}
 
-.mobile-nav-link:hover .mobile-nav-icon,
-.mobile-nav-link.active .mobile-nav-icon {
-  opacity: 1;
-}
 
 .mobile-nav-label {
   font-weight: 500;
