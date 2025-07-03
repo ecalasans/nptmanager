@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import apiService from '../services/api';
 import './Header.css';
 
-const Header = () => {
+const Header = ({ onMobileMenuToggle }) => {
   const navigate = useNavigate();
   const [isLoggingOut, setIsLoggingOut] = useState(false);
 
@@ -39,6 +39,15 @@ const Header = () => {
   return (
     <Navbar className="header" expand="lg">
       <Container fluid>
+        {/* Mobile Menu Toggle */}
+        <button 
+          className="mobile-menu-toggle d-md-none"
+          onClick={onMobileMenuToggle}
+          aria-label="Abrir menu"
+        >
+          ☰
+        </button>
+
         <Navbar.Brand className="header-brand">
           <span className="header-icon">📋</span>
           <span className="header-title">NPT Manager</span>

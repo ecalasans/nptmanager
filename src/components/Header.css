@@ -68,6 +68,22 @@
 
 
 
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+  background: transparent;
+  border: none;
+  padding: 0.5rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-right: 1rem;
+  font-size: 1.5rem;
+}
+
+.mobile-menu-toggle:hover {
+  color: var(--text-secondary);
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .header-brand {

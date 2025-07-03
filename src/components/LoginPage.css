@@ -1,5 +1,5 @@
 /* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Crimson+Text:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap');
 
 /* Login Page - Minimalist Design */
 .login-page {
@@ -99,7 +99,7 @@
 .login-subtitle {
   color: var(--text-secondary);
   font-size: 1rem;
-  font-family: 'Crimson Text', serif;
+  font-family: 'Source Sans Pro', sans-serif;
   margin: 0;
   font-weight: 400;
 }
@@ -230,7 +230,7 @@
 
 .login-footer p {
   color: var(--text-secondary);
-  font-family: 'Crimson Text', serif;
+  font-family: 'Source Sans Pro', sans-serif;
   font-size: 0.875rem;
   margin: 0;
 }

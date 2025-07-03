@@ -47,7 +47,7 @@
 .dashboard-header p {
   color: var(--text-muted);
   font-size: 1.125rem;
-  font-family: 'Crimson Text', serif;
+  font-family: 'Source Sans Pro', sans-serif;
   opacity: 0.8;
   margin: 0;
 }

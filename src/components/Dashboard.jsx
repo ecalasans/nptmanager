@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import Header from './Header';
 import Sidebar from './Sidebar';
@@ -6,6 +6,7 @@ import Footer from './Footer';
 import './Dashboard.css';
 
 const Dashboard = () => {
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
   const stats = [
     { title: 'Total de Usuários', value: '1.234', icon: '👥', color: '#335252' },
     { title: 'Projetos Ativos', value: '56', icon: '📁', color: '#aa4b41' },
@@ -15,11 +16,11 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-app">
-      <Header />
+      <Header onMobileMenuToggle={() => setShowMobileMenu(true)} />
       <Container fluid className="p-0">
         <Row className="g-0">
           <Col xs={12} md={3} lg={2} className="sidebar-container">
-            <Sidebar />
+            <Sidebar showMobileMenu={showMobileMenu} setShowMobileMenu={setShowMobileMenu} />
           </Col>
           <Col xs={12} md={9} lg={10} className="main-content">
             <div className="dashboard">

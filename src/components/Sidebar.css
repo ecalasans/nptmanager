@@ -52,6 +52,15 @@
   opacity: 0.8;
 }
 
+.user-hospital {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  margin: 0 0 0.25rem 0;
+  opacity: 0.8;
+}
+
 .user-last-login {
   color: var(--text-secondary);
   font-size: 0.75rem;
@@ -185,6 +194,10 @@
     font-size: 0.75rem;
   }
   
+  .user-hospital {
+    font-size: 0.75rem;
+  }
+  
   .user-last-login {
     font-size: 0.625rem;
   }
@@ -219,4 +232,96 @@
   .sidebar-label {
     font-size: 0.75rem;
   }
+}
+
+/* Mobile Navigation Styles */
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1050;
+}
+
+.mobile-sidebar {
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(20px);
+}
+
+.mobile-sidebar .offcanvas-header {
+  border-bottom: 1px solid rgba(202, 203, 195, 0.2);
+  padding: 1.5rem;
+}
+
+.mobile-sidebar .offcanvas-title {
+  color: var(--text-primary);
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.25rem;
+}
+
+.mobile-user-profile {
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(202, 203, 195, 0.2);
+  margin-bottom: 1rem;
+}
+
+.mobile-nav-menu {
+  padding: 0;
+}
+
+.mobile-nav-link {
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  color: var(--text-secondary) !important;
+  text-decoration: none;
+  border-radius: 12px;
+  margin-bottom: 0.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+}
+
+.mobile-nav-link:hover {
+  background-color: rgba(60, 125, 166, 0.08);
+  color: var(--text-secondary) !important;
+  transform: translateX(4px);
+  box-shadow: 0 2px 8px rgba(60, 125, 166, 0.1);
+}
+
+.mobile-nav-link.active {
+  background: linear-gradient(135deg, var(--accent-color) 0%, var(--light-accent) 100%);
+  color: white !important;
+  box-shadow: 0 4px 12px rgba(60, 125, 166, 0.2);
+  font-weight: 600;
+}
+
+.mobile-nav-icon {
+  font-size: 1.25rem;
+  margin-right: 1rem;
+  width: 24px;
+  text-align: center;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-nav-link:hover .mobile-nav-icon,
+.mobile-nav-link.active .mobile-nav-icon {
+  opacity: 1;
+}
+
+.mobile-nav-label {
+  font-weight: 500;
+  font-size: 1rem;
+  font-family: 'Montserrat', sans-serif;
+  transition: font-weight 0.3s ease;
+}
+
+.mobile-nav-link:hover .mobile-nav-label,
+.mobile-nav-link.active .mobile-nav-label {
+  font-weight: 600;
 } 
