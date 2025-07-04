@@ -43,6 +43,8 @@ O NPT Manager foi desenvolvido para:
 - **Validação de credenciais** em tempo real
 - **Mensagens de erro** em português
 - **Compatibilidade total** com Django API
+- **Histórico de login** com informações de sessões anteriores
+- **Monitoramento de segurança** com IP addresses e timestamps
 
 ### 🏥 Gerenciamento Hospitalar
 - **Contexto hospitalar** mantido em toda a aplicação
@@ -66,6 +68,8 @@ O NPT Manager foi desenvolvido para:
 - **Animações suaves** e transições
 - **Footer com copyright** ECalasans
 - **Layout otimizado** com melhor uso do espaço
+- **Sidebar com perfil** e histórico de login
+- **Informações de segurança** com IP addresses
 
 ### 🔧 Funcionalidades Técnicas
 - **API Service Layer** para comunicação com backend
@@ -74,6 +78,14 @@ O NPT Manager foi desenvolvido para:
 - **Form validation** client-side
 - **Responsive design** para todos os dispositivos
 - **Debugging avançado** com logs detalhados
+
+### 🔐 Histórico de Login e Segurança
+- **Login anterior**: Exibe a data/hora do login anterior à sessão atual
+- **Histórico de acessos**: Mostra até 3 logins anteriores (excluindo sessão atual)
+- **Rastreamento de IP**: Exibe endereços IP de todos os acessos
+- **Timestamps formatados**: Mostra data, hora e tempo relativo (ex: "há 2 horas")
+- **Monitoramento de segurança**: Ajuda usuários a rastrear padrões de acesso
+- **Interface colapsável**: Histórico pode ser expandido/recolhido na sidebar
 
 ## 🛠️ Instalação e Configuração
 
@@ -158,6 +170,13 @@ O sistema utiliza uma paleta de cores moderna e limpa em tema claro:
 - **Escuro**: `#2d3033` (Cinza escuro - texto)
 
 ## 🔄 Últimas Atualizações
+
+### v1.4.0 - Janeiro 2025
+- ✅ **Histórico de Login**: Endpoint `/api/auth/login-history/` com informações de sessões anteriores
+- ✅ **Login Anterior**: Exibe data/hora do login anterior à sessão atual
+- ✅ **Monitoramento de Segurança**: IP addresses e timestamps de todos os acessos
+- ✅ **Sidebar Aprimorada**: Perfil do usuário com histórico de login colapsável
+- ✅ **Interface de Segurança**: Ajuda usuários a rastrear padrões de acesso à conta
 
 ### v1.3.0 - Janeiro 2025
 - ✅ **Dashboard Hospitalar**: Endpoint `/api/dashboard/` com dados agregados

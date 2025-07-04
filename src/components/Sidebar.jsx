@@ -11,6 +11,8 @@ const Sidebar = ({ showMobileMenu, setShowMobileMenu }) => {
   const [userProfile, setUserProfile] = useState(null);
   const [selectedHospital, setSelectedHospital] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [loginHistory, setLoginHistory] = useState([]);
+  const [showLoginHistory, setShowLoginHistory] = useState(false);
 
   const menuItems = [
     { path: '/dashboard', label: 'Dashboard', icon: faChartBar },
@@ -28,6 +30,20 @@ const Sidebar = ({ showMobileMenu, setShowMobileMenu }) => {
         // Fetch user profile
         const profile = await apiService.getProfile();
         setUserProfile(profile);
+        
+        // Fetch login history
+        try {
+          const history = await apiService.getLoginHistory();
+          if (history.success && history.login_history) {
+            setLoginHistory(history.login_history);
+          }
+          // Store previous login information if available
+          if (history.success && history.previous_login) {
+            profile.previous_login = history.previous_login;
+          }
+        } catch (historyError) {
+          console.error('Erro ao carregar histórico de login:', historyError);
+        }
         
         // Get selected hospital from localStorage
         const hospitalId = localStorage.getItem('selectedHospital');
@@ -68,7 +84,13 @@ const Sidebar = ({ showMobileMenu, setShowMobileMenu }) => {
     fetchUserData();
   }, []);
 
-  const formatLastLogin = (lastLogin) => {
+  const formatLastLogin = (lastLogin, previousLogin = null) => {
+    // If we have previous login information from the API, use it
+    if (previousLogin && previousLogin.formatted_time) {
+      return `${previousLogin.formatted_time} (${previousLogin.relative_time})`;
+    }
+    
+    // Fallback to the original logic for lastLogin
     if (!lastLogin) return 'Informação não disponível';
     
     // Ensure the date is properly parsed and converted to system timezone
@@ -140,7 +162,7 @@ const Sidebar = ({ showMobileMenu, setShowMobileMenu }) => {
                   CRM: {userProfile.crm || 'N/A'}
                 </p>
                 <p className="user-last-login">
-                  Último acesso: {formatLastLogin(userProfile.last_login || userProfile.lastLogin)}
+                  Último acesso: {formatLastLogin(userProfile.last_login || userProfile.lastLogin, userProfile.previous_login)}
                 </p>
               </div>
             </div>
@@ -200,8 +222,29 @@ const Sidebar = ({ showMobileMenu, setShowMobileMenu }) => {
                       CRM: {userProfile.crm || 'N/A'}
                     </p>
                     <p className="user-last-login">
-                      Último acesso: {formatLastLogin(userProfile.last_login || userProfile.lastLogin)}
+                      Último acesso: {formatLastLogin(userProfile.last_login || userProfile.lastLogin, userProfile.previous_login)}
                     </p>
+                    {loginHistory.length > 0 && (
+                      <div className="login-history-section">
+                        <button 
+                          className="btn btn-link btn-sm p-0 text-decoration-none"
+                          onClick={() => setShowLoginHistory(!showLoginHistory)}
+                        >
+                          {showLoginHistory ? 'Ocultar' : 'Ver'} histórico de login
+                        </button>
+                        {showLoginHistory && (
+                          <div className="login-history-list mt-2">
+                            <small className="text-muted d-block mb-1">Acessos anteriores:</small>
+                            {loginHistory.slice(0, 3).map((login, index) => (
+                              <div key={index} className="login-entry small text-muted">
+                                <div>{login.formatted_time}</div>
+                                <div className="text-muted">IP: {login.ip_address}</div>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
               ) : (

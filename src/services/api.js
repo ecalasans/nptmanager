@@ -240,6 +240,11 @@ class ApiService {
     return this.fetchWithErrorHandling(`${this.baseURL}/auth/profile/`);
   }
 
+  // Get login history for the authenticated user
+  async getLoginHistory() {
+    return this.fetchWithErrorHandling(`${this.baseURL}/auth/login-history/`);
+  }
+
   // Logout
   async logout() {
     return this.fetchWithErrorHandling(`${this.baseURL}/auth/logout/`, {

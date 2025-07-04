@@ -181,6 +181,75 @@ npm run preview
 
 ---
 
+## 📅 Trabalho Realizado - Sexta-feira, 4 de Julho de 2025
+
+### 🕐 17:30 - Implementação do Sistema de Histórico de Login
+
+**Problema Identificado:**
+- Necessidade de mostrar login anterior (não o atual) na interface
+- Falta de monitoramento de segurança para acessos à conta
+- Usuários não conseguiam rastrear padrões de acesso
+
+**Solução Implementada:**
+
+#### Backend (Django API):
+- **Novo Endpoint**: `/api/auth/login-history/` para buscar histórico de login
+- **Função Helper**: `get_previous_login_from_logs()` para extrair login anterior
+- **Profile View Modificado**: Retorna login anterior em vez do atual
+- **Log Parsing**: Análise de arquivos de log para extrair informações de login
+- **Formatação de Timestamps**: Conversão para formato legível com tempo relativo
+
+#### Frontend (React):
+- **Sidebar Aprimorada**: Adição de seção de histórico de login colapsável
+- **API Service**: Novo método `getLoginHistory()` para buscar dados
+- **Componente de Perfil**: Exibe login anterior em vez do atual
+- **Interface de Segurança**: Mostra IP addresses e timestamps formatados
+- **Responsividade**: Funciona em desktop e mobile
+
+**Funcionalidades Adicionadas:**
+- **Login Anterior**: Exibe data/hora do login anterior à sessão atual
+- **Histórico de Acessos**: Mostra até 3 logins anteriores (excluindo sessão atual)
+- **Rastreamento de IP**: Exibe endereços IP de todos os acessos
+- **Timestamps Formatados**: Mostra data, hora e tempo relativo (ex: "há 2 horas")
+- **Monitoramento de Segurança**: Ajuda usuários a rastrear padrões de acesso
+- **Interface Colapsável**: Histórico pode ser expandido/recolhido na sidebar
+
+**Arquivos Modificados:**
+- `nptneoapi/api/views/auth.py` - Novo endpoint e lógica de login anterior
+- `nptneoapi/api/urls.py` - Adição da rota de login history
+- `nptmanager/src/services/api.js` - Novo método para buscar histórico
+- `nptmanager/src/components/Sidebar.jsx` - Interface de histórico de login
+- `nptmanager/src/components/Sidebar.css` - Estilos para seção de histórico
+
+**Resultado:**
+- Sistema completo de monitoramento de login implementado
+- Interface de segurança intuitiva e informativa
+- Separação clara entre sessão atual e histórico
+- Base sólida para futuras funcionalidades de segurança
+
+### 🕐 18:00 - Atualização da Documentação
+
+**Problema Identificado:**
+- Documentação desatualizada após implementação do histórico de login
+- Falta de informações sobre novas funcionalidades de segurança
+
+**Solução Implementada:**
+- **README.md**: Adicionada seção sobre histórico de login e segurança
+- **API_DOCUMENTATION.md**: Documentação completa do novo endpoint
+- **API_QUICK_REFERENCE.md**: Referência rápida para login history
+- **DIARIO_DEVELOPMENT.md**: Registro detalhado da implementação
+
+**Melhorias na Documentação:**
+- Exemplos de uso do endpoint de login history
+- Explicação do funcionamento do sistema de login anterior
+- Benefícios de segurança do monitoramento de acesso
+- Estrutura de resposta da API documentada
+
+**Resultado:**
+- Documentação completa e atualizada
+- Guias claros para desenvolvedores e usuários
+- Base sólida para manutenção futura
+
 ## 📅 Trabalho Realizado - Quinta-feira, 3 de Julho de 2025
 
 ### 🕐 13:07 - Correção de Erro React: Objects as React Child
